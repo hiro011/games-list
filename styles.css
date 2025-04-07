@@ -1,0 +1,453 @@
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e3f2fd;
+    color: #333;
+	text-align: center;
+}
+
+h1 {
+    color: white;
+}
+
+/* Header */
+header {
+    background: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+#nav-bar {
+    position: static;
+    top: 0;
+    width: 100%;
+    background: #0d47a1;
+    padding: 3px 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    background: #1565c0;
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background: #1976d2;
+}
+
+body.nav-fixed #add-game {
+    top: calc(50% + 70px); /* Adjust top position when navbar is fixed */
+    transform: translate(-50%, calc(-50% - 70px));
+}
+
+body.nav-fixed #edit-game {
+    top: calc(50% + 70px); /* Adjust top position when navbar is fixed */
+    transform: translate(-50%, calc(-50% - 70px));
+}
+
+button {
+    background: #0d47a1;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1976d2;
+}
+
+/* ** START: Search Input Styling ** */
+.search-container {
+    text-align: center; 
+    padding: 5px 0 10px 0; 
+    background: #0d47a1; 
+}
+
+#search-input {
+    padding: 8px 15px;
+    width: 60%; 
+    max-width: 500px; 
+    border: 1px solid #bbdefb; 
+    border-radius: 20px; 
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #1976d2; /* Highlight border on focus */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 5px rgba(25, 118, 210, 0.5); /* Add outer glow on focus */
+}
+/* END: Search Input Styling */
+
+/* Sections */
+.game-container {
+    margin: 20px 50px 50px; /* T R/L B */
+    padding: 20px;
+    border-radius: 15px; 
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2); 
+    background-color: #edf6fc;	
+	/* max-width: 600px; */
+}
+
+.game-section {
+    padding: 20px;
+}
+
+.game-section h2 {
+    color: #0d47a1;
+    text-align: center;
+    border-bottom: 2px solid #0d47a1;
+    padding-bottom: 5px;
+}
+
+.game-list {
+	display: flex; 
+	flex-wrap: wrap; /* Allows items to move to the next row */
+    justify-content: center; /* Centers items within the section */
+    padding: 0;
+	gap: 10px;
+}
+
+.game-list li {
+	flex: 1 1 calc(25% - 20px); /* 4 items per row */
+    max-width: 250px; /* Prevents items from becoming too large */
+    background: #bbdefb;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.game-list li:hover {
+    background: #90caf9; 
+    transform: scale(1.03);
+}
+
+.overlay-active .game-list li:hover {
+    transform: none !important;
+    background: #bbdefb !important;
+}
+
+.game-list li a:hover {
+    color: #1976d2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .game-list li {
+        flex: 1 1 calc(33.333% - 20px); /* 3 items per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .game-list li {
+        flex: 1 1 calc(50% - 20px); /* 2 items per row on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .game-list li {
+        flex: 1 1 100%; /* 1 item per row on extra small screens */
+    }
+}
+
+/* Game Links */
+.game-names {
+    text-decoration: none;
+    color: #0d47a1;
+    font-weight: bold;
+    transition: 0.3s;
+	margin: 5px;
+}
+
+.game-btn {
+	margin: 10px 5px;
+	justify-content: space-between;
+	display: flex; 
+}
+
+.game-image {
+    padding: 10px;
+	height: 150px; 
+    overflow: hidden; /* To prevent potential overflow */
+}
+
+.game-image img {
+	cursor: pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.move-dropdown {
+	padding: 5px;
+    border: 1px solid #0d47a1;
+    border-radius: 10px;
+}
+
+.edit-btn {
+    background: #0d47a1;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.delete-btn {
+    background: red;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+/* Add Game Button */
+.add-game-container {
+    text-align: center;
+    margin: 20px 20px 0 20px; /* Top Right Bottom Left */
+}
+
+#toggle-form-btn {
+    background: #0d47a1;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#toggle-form-btn:hover {
+    background: #1976d2;
+}
+
+/* pop-up form container */
+#add-game, #edit-game, #delete-game, #show-game {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9); 
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+#show-game {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); 
+	padding: 0;
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	max-width: 900px;
+	text-align: center;
+	/* overflow: auto; */
+} 
+
+#delete-b {
+	background-color: red;
+}
+#delete-b:hover{
+	background-color: orange;
+}
+
+/* Overlay behind the form */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Close button */
+.close-btn {
+  color: red;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: orange;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.preview-image img {
+	width: 100%;
+	border-radius: 10px;
+}
+
+#add-game input, #add-game select, #add-game button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #0d47a1;
+    border-radius: 10px;
+}
+
+#edit-game input, #edit-game select, #edit-game button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #0d47a1;
+    border-radius: 10px;
+}
+
+#add-game button, #edit-game button {
+    background: #0d47a1;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#add-game button:hover, #edit-game button:hover {
+    background: #1976d2;
+}
+
+#add-game h2, #edit-game h2 {
+	margin: 10px;
+}
+
+.upload-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.upload-img {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px 10px
+}
+
+input[type="file"] {
+    margin: 10px 0;
+	max-width: 300px;
+}
+
+.preview {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
+
+.preview img {
+    display: none;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.preview img[src] {
+    display: block;
+}
+
+
+#refresh-btn:hover {
+    background-color: #1976d2;
+}
+
+#go-top-btn, #refresh-btn {
+    position: fixed;
+    bottom: 20px;
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+	text-align: center;
+}
+
+#refresh-btn {
+    right: 30px;
+	z-index: 1100; /* Ensure it's above the overlay */
+}
+
+#go-top-btn {
+    right: 100px;
+	display: none;
+}
+
+#go-top-btn:hover {
+    background-color: #1976d2;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+/* Button Styles */
+.download-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#download-html-btn {
+    background: #0d47a1;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+	margin-bottom: 50px;
+}
+
+#download-html-btn:hover {
+    background: #1976d2;
+}
