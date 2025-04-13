@@ -269,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					<option value="playing">Playing</option>
 					<option value="plan-to">Plan To</option>
 					<option value="on-hold">On Hold</option>
+					<option value="maybe">Maybe</option>
 					<option value="completed">Completed</option>
 				</select>
 				<button class="edit-btn">✏️</button>
@@ -378,18 +379,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const playingCountSpan = document.getElementById('playing-count');
         const planToCountSpan = document.getElementById('plan-to-count');
         const onHoldCountSpan = document.getElementById('on-hold-count');
+        const maybeCountSpan = document.getElementById('maybe-count');
         const completedCountSpan = document.getElementById('completed-count');
         const totalCountSpan = document.getElementById('total-count');
 
         const playingCount = document.getElementById('playing-list').children.length;
         const planToCount = document.getElementById('plan-to-list').children.length;
         const onHoldCount = document.getElementById('on-hold-list').children.length;
+        const maybeCount = document.getElementById('maybe-list').children.length;
         const completedCount = document.getElementById('completed-list').children.length;
-        const totalCount = playingCount + planToCount + onHoldCount + completedCount;
+        const totalCount = playingCount + planToCount + onHoldCount + completedCount + maybeCount;
 
         playingCountSpan.textContent = playingCount;
         planToCountSpan.textContent = planToCount;
         onHoldCountSpan.textContent = onHoldCount;
+        maybeCountSpan.textContent = maybeCount;
         completedCountSpan.textContent = completedCount;
         totalCountSpan.textContent = totalCount;
     }
@@ -491,6 +495,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById('playing-list').innerHTML = '';
         document.getElementById('plan-to-list').innerHTML = '';
         document.getElementById('on-hold-list').innerHTML = '';
+        document.getElementById('maybe-list').innerHTML = '';
         document.getElementById('completed-list').innerHTML = '';
 
 		games.forEach(game => {
@@ -518,142 +523,51 @@ document.addEventListener("DOMContentLoaded", function () {
     <title>My Games</title>
     <link rel="stylesheet" href="styles.css">
 	<link rel="icon" type="image" href="images/game_stick_icon 2.png">
-
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			const editImageUpload = document.getElementById('editImageUpload');
-			const previewEditImage = document.getElementById('previewEditImage');
-			
-			if (editImageUpload && previewEditImage) {
-				editImageUpload.addEventListener('change', function(event) {
-					const file = event.target.files[0];
-					if (file) {
-						const reader = new FileReader();
-						reader.onload = function(e) {
-							previewEditImage.src = e.target.result;
-						};
-						reader.readAsDataURL(file);
-					}
-				});
-			}
-		});
-	</script>
 </head>
+
 <body>
     <header>
-        <h1>My Games</h1>
+        <h1>My Games - <span class="game-count" id="total-count">0</span></h1>
 		<div class="search-container">
             <input type="text" id="search-input" placeholder="🔍 Search games...">
             <button id="clear-search" >clear</button>
-		</div>
-		<nav id="nav-bar">
+        </div>
+        <nav id="nav-bar">
             <ul>
                 <li><a href="#playing">Playing</a></li>
                 <li><a href="#plan-to">Plan To</a></li>
-				<li><a href="#on-hold">On Hold</a></li>
+                <li><a href="#on-hold">On Hold</a></li>
+                <li><a href="#maybe">Maybe</a></li>
                 <li><a href="#completed">Completed</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <div class="add-game-container"> 
-            <button id="toggle-form-btn">➕ Add New Game</button>
-        </div> 
-		
 		<!-- Overlay (background) -->
 		<div class="overlay" id="overlay"></div>
 		
-		<section id="show-game">
-				<span class="close-btn">&times;</span>
-				<div class="preview-image">
-						<img id="previewGameImage" src="images/default-game.jpeg" alt="Show image">
-				</div>
-				<h2>Game Name</h2>
-		</section>
-        
-		<section id="add-game">
+        <section id="show-game">
 			<span class="close-btn">&times;</span>
-			<div id="popupFormFields">
-				<h2>Add a New Game</h2>
-				<div class="upload-container">
-					<div class="upload-img">
-						<h2>Upload Image</h2>
-						<input type="file" id="imageUpload" accept="image/*">
-					</div>
-					<div class="preview">
-						<img id="previewImage" src="" alt="Image Preview">
-					</div>
-				</div>
-				
-				<input type="text" id="game-name" placeholder="Enter game name" required>
-				<input type="text" id="game-link" placeholder="Enter game link" required>
-				
-				<select id="game-category">
-					<option value="playing">Playing</option>
-					<option value="plan-to">Plan To</option>
-					<option value="on-hold">On Hold</option>
-					<option value="completed">Completed</option>
-				</select>
-				<button id="add-game-btn">Add Game</button>
+			<div class="preview-image">
+				<img id="previewGameImage" src="images/default-game.jpeg" alt="Show image">
 			</div>
-		</section>
-		
-		<section id="delete-game">
-			<div id="popupFormFields">
-				<h3>Are you sure you want to delete "Game name"?</h3>
-				
-				<button id="delete-b">Delete</button>
-				<button id="cancel-b">Cancel</button>
-			</div>
+			<h2>Game Name</h2>
 		</section>
 
-		<section id="edit-game">
-			<span class="close-btn">&times;</span>
-			<div id="popupEditFields">
-				<h2>Edit Game</h2>
-				<div class="upload-container">
-					<div class="upload-img">
-						<h2>Upload Image</h2>
-						<input type="file" id="editImageUpload" accept="image/*">
-					</div>
-					<div class="preview">
-						<img id="previewEditImage" src="" alt="Image Preview">
-					</div>
-				</div>
-				
-				<input type="text" id="edit-name" placeholder="Enter game name">
-				<input type="text" id="edit-link" placeholder="Enter game link">
-				 
-				<button id="edit-game-btn">Edit Game</button>
-			</div>
-		</section>
-		
 		<section id="playing" class="game-container">
 			<div class="game-section">
-				<h2>Playing</h2>
+				<h2>Playing - <span class="game-count" id="playing-count">0</span></h2>
 				<ul class="game-list" id="playing-list">
 					${games.filter(g => g.category === "playing").map(g => `
-					<li>
+					<li data-game-name="${g.name}">
 						<div class="game-image">
 							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						<div>
+						</div>
 						<div class="game-names">
 							<a href="${g.link}" target="_blank">${g.name}</a>
 						</div>
-						<div class="game-btn">
-							<select class="move-dropdown">
-								<option value="">Move to...</option>
-								<option value="playing">Playing</option>
-								<option value="plan-to">Plan To</option>
-								<option value="on-hold">On Hold</option>
-								<option value="completed">Completed</option>
-							</select>
-							<button class="edit-btn">✏️</button>
-							<button class="delete-btn">🗑</button>
-						</div>
 					</li>
-					
 					`).join("")}
 				</ul>
             </div>
@@ -661,28 +575,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <section id="plan-to" class="game-container">
 			<div class="game-section">
-				<h2>Plan To</h2>
+				<h2>Plan To - <span class="game-count" id="plan-to-count">0</span></h2>
 				<ul class="game-list" id="plan-to-list">
 					${games.filter(g => g.category === "plan-to").map(g => `
-					<li>
+					<li data-game-name="${g.name}">
 						<div class="game-image">
 							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						<div>
+						</div>
 						<div class="game-names">
 							<a href="${g.link}" target="_blank">${g.name}</a>
 						</div>
-						<div class="game-btn">
-							<select class="move-dropdown">
-								<option value="">Move to...</option>
-								<option value="playing">Playing</option>
-								<option value="plan-to">Plan To</option>
-								<option value="completed">Completed</option>
-							</select>
-							<button class="edit-btn">✏️</button>
-							<button class="delete-btn">🗑</button>
-						</div>
 					</li>
-					
 					`).join("")}
 				</ul>
 			</div>
@@ -690,29 +593,35 @@ document.addEventListener("DOMContentLoaded", function () {
 		
         <section id="on-hold" class="game-container">
 			<div class="game-section">
-				<h2>On Hold</h2>
+				<h2>On Hold - <span class="game-count" id="on-hold-count">0</span></h2>
 				<ul class="game-list" id="on-hold-list">
 					${games.filter(g => g.category === "on-hold").map(g => `
-					<li>
+					<li data-game-name="${g.name}">
 						<div class="game-image">
 							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						<div>
+						</div>
 						<div class="game-names">
 							<a href="${g.link}" target="_blank">${g.name}</a>
 						</div>
-						<div class="game-btn">
-							<select class="move-dropdown">
-								<option value="">Move to...</option>
-								<option value="playing">Playing</option>
-								<option value="plan-to">Plan To</option>
-								<option value="on-hold">On Hold</option>
-								<option value="completed">Completed</option>
-							</select>
-							<button class="edit-btn">✏️</button>
-							<button class="delete-btn">🗑</button>
+					</li>
+					`).join("")}
+				</ul>
+			</div>
+        </section>
+		
+        <section id="maybe" class="game-container">
+			<div class="game-section">
+				<h2>Maybe - <span class="game-count" id="maybe-count">0</span></h2>
+				<ul class="game-list" id="maybe-list">
+					${games.filter(g => g.category === "maybe").map(g => `
+					<li data-game-name="${g.name}">
+						<div class="game-image">
+							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
+						</div>
+						<div class="game-names">
+							<a href="${g.link}" target="_blank">${g.name}</a>
 						</div>
 					</li>
-					
 					`).join("")}
 				</ul>
 			</div>
@@ -720,43 +629,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <section id="completed" class="game-container">
 			<div class="game-section">
-				<h2>Completed</h2>
+				<h2>Completed - <span class="game-count" id="completed-count">0</span></h2>
 				<ul class="game-list" id="completed-list">
 					${games.filter(g => g.category === "completed").map(g => `
-					<li>
+					<li data-game-name="${g.name}">
 						<div class="game-image">
 							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						<div>
+						</div>
 						<div class="game-names">
 							<a href="${g.link}" target="_blank">${g.name}</a>
 						</div>
-						<div class="game-btn">
-							<select class="move-dropdown">
-								<option value="">Move to...</option>
-								<option value="playing">Playing</option>
-								<option value="plan-to">Plan To</option>
-								<option value="on-hold">On Hold</option>
-								<option value="completed">Completed</option>
-							</select>
-							<button class="edit-btn">✏️</button>
-							<button class="delete-btn">🗑</button>
-						</div>
 					</li>
-					
 					`).join("")}
 				</ul>
 			</div>
         </section>
-
-        <div class="download-container">
-            <button id="download-html-btn">📥 Download Updated HTML</button>
-        </div>
-
-		<button id="refresh-btn" class="refresh-btn" >Refresh</button>
+		
+		<button id="refresh-btn" class="refresh-btn" >Refresh</button>	
         <button id="go-top-btn" class="go-top-btn">↑ Go to Top</button>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>
 	`;
@@ -765,7 +658,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const blob = new Blob([htmlContent], { type: "text/html" });
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = "index-data.html";
+        a.download = "Games-data.html";
         document.body.prepend(a);
         a.click();
         document.body.removeChild(a);
