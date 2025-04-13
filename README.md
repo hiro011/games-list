@@ -37,5 +37,5 @@ Not sure
 ## Author
 
 Ahmed Mehamedyesuf
-https://github.com/hiro011
-https://ahmed-mehamedyesuf.netlify.app/
+* https://github.com/hiro011
+* https://ahmed-mehamedyesuf.netlify.app/
