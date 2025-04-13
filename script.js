@@ -225,12 +225,27 @@ document.addEventListener("DOMContentLoaded", function () {
 		
 		// Ensure gameId is unique and persistent
 		let gameId = localStorage.getItem("gameId") ? Number(localStorage.getItem("gameId")) : 5;
+		let imgPath = "";
 		
+		// Handle image upload
+		if (file) {
+			reader.onload = function (event) {
+				imgPath = event.target.result;
+			addGameToList(gameId, imgPath, name, link, category);
+			saveGame(gameId, imgPath, name, link, category);
+			};
+			
+			reader.readAsDataURL(file);
+		} else { 
+			imgPath = "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true"; // defualt image
+			addGameToList(gameId, imgPath, name, link, category);
+			saveGame(gameId, imgPath, name, link, category);
+		}
 		// Instead of storing Base64, save the file path or filename
-		let imgPath = file ? `images/${file.name}` : "images/default-game.jpeg";
+		// let imgPath = file ? `images/${file.name}` : "images/default-game.jpeg";
 		
-		addGameToList(gameId, imgPath, name, link, category);
-		saveGame(gameId, imgPath, name, link, category);
+		// addGameToList(gameId, imgPath, name, link, category);
+		// saveGame(gameId, imgPath, name, link, category);
 
 		// Increment and store new gameId
 		gameId++;
@@ -501,7 +516,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		games.forEach(game => {
             // Ensure valid data before adding
             if (game && game.id != null && game.name && game.category) {
-                 addGameToList(game.id, game.imgPath || "images/default-game.jpeg", game.name, game.link || "#", game.category);
+                 addGameToList(game.id, game.imgPath || "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true", game.name, game.link || "#", game.category);
             } else {
                 console.warn("Skipping invalid game data from localStorage:", game);
             }
@@ -550,7 +565,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <section id="show-game">
 			<span class="close-btn">&times;</span>
 			<div class="preview-image">
-				<img id="previewGameImage" src="images/default-game.jpeg" alt="Show image">
+				<img id="previewGameImage" src="https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true" alt="Show image">
 			</div>
 			<h2>Game Name</h2>
 		</section>
