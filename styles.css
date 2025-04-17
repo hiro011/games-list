@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e3f2fd;
+    background-color: #abd0eb;
     color: #333;
 	text-align: center;
 }
@@ -117,11 +117,12 @@ button:hover {
 
 /* Sections */
 .game-container {
-    margin: 20px 50px 50px; /* T R/L B */
+    margin: 20px 30px 30px; /* T R/L B */
     padding: 20px;
-    border-radius: 15px; 
-    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2); 
-    background-color: #edf6fc;	
+    border-radius: 15px;
+    border: 1px solid #1565c0; 
+    background-color: #cbe2f2;	
+    /* box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2);  */
 	/* max-width: 600px; */
 }
 
@@ -154,7 +155,6 @@ button:hover {
     margin: 5px;
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .game-list li:hover {
