@@ -1,33 +1,20 @@
 /* General Styles */
 
 :root {
-	/*
-	--clr-navigation: #0d47a1; /* header, footer*
-	--clr-background: #abd0eb; /* body *
-	--clr-container : #9c93ad; /* game list container *
-	--clr-list: #A6AEBF;   /* games card /list li *
-	--clr-btn: #5f41a3;  /* button *
-	
-	--clr-list-hover: #e5bcf7;   /* list li hover *
-	--clr-btn-hover: #5b08cf;  /* button hover */
-
-/* dark mode */
-
-	--clr-navigation: #0d47a1; /* header, footer */
+	--clr-navigation: linear-gradient(135deg, #0d47a1, #1565c0);; /* header, footer */
 	--clr-background: #abd0eb; /* body */
 	--clr-container : #cbe2f2; /* game list container */
 	--clr-list: #aad1f2;   /* games card /list li */
-	--clr-btn: #1565c0;  /* button */
-	
+	--clr-btn: linear-gradient(135deg, #2190cc, #13aaf0); /* deep blue to aqua */
+
 	--clr-list-hover: #90caf9;   /* list li hover */
-	--clr-btn-hover: #35ace3;  /* button hover */
+	--clr-btn-hover: linear-gradient(135deg, #1531c0, #42ebf5); /* strong blue to cyan */
 }
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* background-color: #abd0eb; */
     background-color: var(--clr-background);
     color: #333;
 	text-align: center;
@@ -81,12 +68,13 @@ nav ul li a {
     font-size: 1rem;
     background: var(--clr-btn);
     padding: 10px 15px;
-    border-radius: 20px;
     transition: 0.3s;
+    border-radius: 15px;
 }
 
 nav ul li a:hover { 
     background: var(--clr-btn-hover);
+	border: 1px solid white;
 }
 
 body.nav-fixed #add-game {
@@ -104,13 +92,14 @@ button {
     color: white;
     border: none;
     padding: 8px 15px;
-    border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 10px;
 }
 
 button:hover {
     background: var(--clr-btn-hover);
+	border: 1px solid #148516;
 }
 
 /* ** START: Search Input Styling ** */
