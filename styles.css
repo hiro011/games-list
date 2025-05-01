@@ -1,14 +1,14 @@
 /* General Styles */
 
 :root {
-	--clr-navigation: linear-gradient(135deg, #0d47a1, #1565c0);; /* header, footer */
+	--clr-navigation: linear-gradient(135deg, #0d47a1, #1565c0); /* header, footer */
 	--clr-background: #abd0eb; /* body */
 	--clr-container : #cbe2f2; /* game list container */
 	--clr-list: #aad1f2;   /* games card /list li */
 	--clr-btn: linear-gradient(135deg, #2190cc, #13aaf0); /* deep blue to aqua */
 
 	--clr-list-hover: #90caf9;   /* list li hover */
-	--clr-btn-hover: linear-gradient(135deg, #1531c0, #42ebf5); /* strong blue to cyan */
+	--clr-btn-hover: linear-gradient(135deg, #42ebf5, #59d47a); /* strong blue to cyan */
 }
 
 body {
