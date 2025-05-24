@@ -87,7 +87,7 @@ html {
 /* Header */
 header {
 	position: relative;
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png');
+	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true');
     background-size: cover;        /* Ensures the image covers the full nav */
     background-repeat: no-repeat;  /* Prevents tiling */
     background-position: center;   /* Centers the image */
@@ -219,25 +219,25 @@ input[type="text"]:focus {
   margin: 0;
 }
 .nav-bg-1 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img1.png');
+	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img1.png?raw=true');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .nav-bg-2 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png');
+	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .nav-bg-3 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img3.png');
+	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img3.png?raw=true');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .nav-bg-4 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img4.png');
+	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img4.png?raw=true');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
