@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games</title>
+    <link rel="stylesheet" href="styles_settings.css">
+	<link rel="icon" type="image" href="https://github.com/hiro011/my-games/blob/main/game_stick_icon%202.png?raw=true">
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const imgUploadDef = document.getElementById('imageUploadDef');
+			const previewDefImg = document.getElementById('previewDefImage');
+			
+			if (imgUploadDef && previewDefImg) {
+				imgUploadDef.addEventListener('change', function(event) {
+					const file = event.target.files[0];
+					if (file) {
+						const reader = new FileReader();
+						reader.onload = function(e) {
+							previewDefImg.src = e.target.result;
+						};
+						reader.readAsDataURL(file);
+					}
+				});
+			}
+		});
+	</script>
+</head>
+<body id="main-body">
+    <header>
+        <h1> Settings </h1>
+    </header>
+
+    <main>
+        <div class="btn-container"> 
+			<a href="Games.html" class="home-btn" >
+				<button>
+					Home
+				</button>
+			</a>
+		</div> 
+		
+		<section class="setting-container">
+		  <div class="setting-group">
+			<h2>Navigation Background</h2>
+			<ul class="option-list">
+			  <li><button class="nav-bg-1" id="nav-bg-1">Darksouls</button></li>
+			  <li><button class="nav-bg-2" id="nav-bg-2">Hollow knight</button></li>
+			  <li><button class="nav-bg-3" id="nav-bg-3">Darksouls</button></li>
+			  <li><button class="nav-bg-4" id="nav-bg-4">Elden Ring</button></li>
+			</ul>
+			<input type="file" id="imageUploadNav" accept="image/*">
+		  </div>
+
+		  <div class="setting-group">
+			<h2>Change Theme</h2>
+			<ul class="option-list">
+			  <li><button class="t-blue" id="theme-blue">Blue</button></li>
+			  <li><button class="t-dark" id="theme-dark"> Dark </button></li>
+			  <li><button class="t-orange" id="theme-orange">Orange</button></li>
+			  <li><button class="t-green" id="theme-green">Green</button></li>
+			  <li><button class="t-purple" id="theme-purple">Purple</button></li>
+			  <li><button class="t-red" id="theme-red">Red</button></li>
+			</ul>
+		  </div>
+
+		  <div class="setting-group">
+			<h2>Change Default Image</h2>
+			<input type="file" id="imageUploadDef" accept="image/*">
+		  </div>
+		  
+		  <div class="preview">
+			<img id="previewDefImage" src="images/default-game.jpeg" alt="Image Preview">
+		  </div>
+		  
+		  <button id="def-img-btn"> save </button>
+
+		  <div class="setting-group">
+			<h2>Change Default Link</h2>
+			<input type="text" id="def-link" placeholder="Enter default link">
+			<button id="def-link-btn"> save </button>
+		  </div>
+		</section>
+
+		<button id="refresh-btn" class="refresh-btn" >Refresh</button>
+        <button id="go-top-btn" class="go-top-btn">↑ Go to Top</button>
+    </main>
+	
+	<footer>
+		<p>&copy; 2025 Ahmed Mehamedyesuf. All rights reserved.</p>
+	</footer>
+
+    <script src="script_settings.js"></script>
+</body>
+</html>
