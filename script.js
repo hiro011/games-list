@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const deleteGameForm = document.getElementById("delete-game");
     const deleteButton = document.getElementById("delete-b"); 
+        const headerBg = document.querySelector("header");
 
 
     // Track currently editing game
@@ -37,7 +38,43 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load saved games/ Initialize
     loadGames();
 	updateGameCounts(); // Call this after loading games
-
+ // Load images
+        navImageInit();
+        function navImageInit() {
+                const settings = JSON.parse(localStorage.getItem("settings")) || {};
+                const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true";
+                headerBg.style.backgroundImage = `url("${bg}")`;
+        }
+        
+        // initialise the theme
+        themeInit();
+        function themeInit(){
+          const settings = JSON.parse(localStorage.getItem("settings")) || {};
+          const themeValue = settings.theme || "blue";
+          
+          const body = document.getElementById('main-body');
+          
+          // Remove any existing theme classes
+          body.classList.remove('theme-green', 'theme-dark', 'theme-orange', 'theme-purple');
+          
+          if (themeValue === 'blue' || themeValue == '') {
+                body.classList.remove('theme-green', 'theme-dark', 'theme-orange', 'theme-purple');
+          }
+          
+          // Add the selected theme
+          if (themeValue === 'green') {
+                body.classList.add('theme-green');
+          } else if (themeValue === 'dark') {
+                body.classList.add('theme-dark');
+          } else if (themeValue === 'orange') {
+                body.classList.add('theme-orange');
+          }else if (themeValue === 'purple') {
+                body.classList.add('theme-purple');
+          }else if (themeValue === 'red') {
+                body.classList.add('theme-red');
+          }
+        }
+        
 	// Show delete popup form 
 	function showDeletePopup() {
 		deleteGameForm.style.display = 'block';
@@ -169,17 +206,23 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    window.addEventListener("scroll", function () {
+       window.addEventListener("scroll", function () {
+                const navBar = document.getElementById("nav-bar");
+                const settings = JSON.parse(localStorage.getItem("settings")) || {};
+                const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true"; 
         if (window.scrollY > 250) {
             goTopBtn.style.display = "block";
         } else {
             goTopBtn.style.display = "none";
-        } 
-		if (window.scrollY > 130) {
-			document.getElementById("nav-bar").style.position = "fixed";
-        } else {
-			document.getElementById("nav-bar").style.position = "static";
         }
+                if (window.scrollY > 130) {
+                        navBar.style.position = "fixed";
+                        navBar.style.backgroundImage = `url("${bg}")`;
+        } else {
+                        navBar.style.position = "static";
+                        navBar.style.backgroundImage = "none";
+        }
+    
     });
  
 	// Function to handle Enter key submission
