@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	navImageInit();
 	function navImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings")) || {};
-		const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png";
+		const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true";
 		headerBg.style.backgroundImage = `url("${bg}")`;
 	}
 	
 	defImageInit();
 	function defImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings")) || {};
-		const defImage = settings.defImg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg";
+		const defImage = settings.defImg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg?raw=true";
 		const previewDefImg = document.getElementById('previewDefImage');
 		
 		previewDefImg.src = defImage;
@@ -88,9 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	function defaultSet() {
 		const settings = JSON.parse(localStorage.getItem("settings")) || {};
 		const defaultSettings = {
-			navBg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png",
+			navBg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true",
 			theme: "blue",
-			defImg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg",
+			defImg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg?raw=true",
 			defLink: "https://store.steampowered.com"
 		};
 		
@@ -190,10 +190,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		navImageInit();
 	}
 
-	navBg1.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img1.png"));
-	navBg2.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png"));
-	navBg3.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img3.png"));
-	navBg4.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img4.png"));
+	navBg1.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img1.png?raw=true"));
+	navBg2.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true"));
+	navBg3.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img3.png?raw=true"));
+	navBg4.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img4.png?raw=true"));
 	
 	const imgUploadNav = document.getElementById('imageUploadNav');
 	
