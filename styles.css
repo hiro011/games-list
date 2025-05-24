@@ -333,9 +333,13 @@ button:hover {
 }
 
 /* Add Game Button */
-.add-game-container {
+.add-game-container, .btn-container {
     text-align: center;
     margin: 20px 20px 0 20px; /* Top Right Bottom Left */
+}
+
+.btn-container a {
+        text-decoration: none;
 }
 
 #toggle-form-btn {
