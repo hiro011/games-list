@@ -1,41 +1,59 @@
-# Games-List 
+# Games-List
 
 This is a simple web application built with HTML, CSS, and JavaScript that allows users to manage a personal list of their favorite games directly within their browser. You can easily add new games, edit their details, rearrange their order, and remove them from the list. All data is stored locally in your browser's storage, ensuring your list is persistent across sessions on the same device.
 
 ## Features
 
-* **Add Game:** Easily add new games to your library by providing a name, image URL, and a link.
-* **Edit Game:** Modify the details (name, image URL, link) of existing games in your list.
-* **Move Game:** Reorder your game list by dragging and dropping items to your preferred position.
-* **Delete Game:** Remove games from your library with a simple click.
-* **Search:** Quickly find games in your library using the search bar. The list updates in real-time as you type.
-* **Local Storage:** Your game library is saved directly in your browser's local storage, meaning no external database or server is required.
-* **Game Details:** Each game entry in the list displays its name, an optional image, and a link to the game's website or store page.
+- **Add Game:** Add new games to your library by entering a name, image URL, and a link.
+- **Edit Game:** Modify the name, image URL, or link of any existing game.
+- **Move Game:** Reorder your games using drag-and-drop functionality.
+- **Delete Game:** Remove games from your list instantly.
+- **Search:** Find games quickly with a real-time updating search bar.
+- **Game Details:** Each game shows its name, an optional image, and a link to its website or store.
+- **Local Storage:** All game data is saved to your browser's local storage.
+
+## New Pages
+
+### Settings Page
+
+Customize your app experience:
+
+- **Navigation Background:** Set a custom background image for the navigation bar.
+- **Default Game Image:** Define a fallback image for games without an image URL.
+- **Default Link:** Set a default link for games without a provided link.
+- **Theme Switcher:** Change between different themes to personalize the look and feel of the app.
+
+### About Page
+
+Get information about the purpose of the application, its features, and how to use it. This page provides context and insight into the goal of the project.
 
 ## How to Use
 
-1.  **Visit the website:** Go to [https://game-list-local.netlify.app](https://game-list-local.netlify.app).
-2.  **Start managing your game library!** Use the provided buttons and interface to add, edit, move, and delete games. Use the search bar to filter your game list.
+1. **Visit the website:** [https://game-list-local.netlify.app](https://game-list-local.netlify.app)
+2. **Manage your game list:** Add, edit, move, and delete games with the interface.
+3. **Customize settings:** Navigate to the Settings page to personalize your experience.
+4. **Learn more:** Visit the About page for app information and usage guidance.
 
 ## Technologies Used
 
-* **HTML:** For structuring the web page content.
-* **CSS:** For styling the visual appearance of the application.
-* **JavaScript:** For handling the interactive functionality, including adding, editing, moving, deleting games, managing local storage, and the real-time search.
+- **HTML:** Structuring the web page.
+- **CSS:** Styling and theming.
+- **JavaScript:** Interactive functionality, local storage management, drag-and-drop, and dynamic UI updates.
 
 ## Local Storage
 
-This application utilizes your browser's local storage to save your game library. This means:
+Your game library is stored in your browser:
 
-* Your data is stored directly within your web browser and is specific to that browser on your current device.
-* Your game list will persist even if you close the browser and open it again later.
-* Clearing your browser's local storage will also remove the saved game library.
+- Data is saved per browser/device.
+- Your list persists across sessions.
+- Clearing local storage will erase your game list.
 
 ## Potential Future Enhancements
-Not sure
+
+- To be determined
 
 ## Author
 
-Ahmed Mehamedyesuf
-* https://github.com/hiro011
-* https://ahmed-mehamedyesuf.netlify.app/
+**Ahmed Mehamedyesuf**  
+- GitHub: [hiro011](https://github.com/hiro011)  
+- Portfolio: [https://ahmed-mehamedyesuf.netlify.app](https://ahmed-mehamedyesuf.netlify.app)
