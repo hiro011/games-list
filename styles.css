@@ -85,7 +85,7 @@ html {
 /* Header */
 header {
 	position: relative;
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png');
+	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true');
     background-size: cover;        /* Ensures the image covers the full nav */
     background-repeat: no-repeat;  /* Prevents tiling */
     background-position: center;   /* Centers the image */
