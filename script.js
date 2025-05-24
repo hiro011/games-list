@@ -256,14 +256,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		const category = gameCategorySelect.value;
 		const reader = new FileReader();
 		const file = imageUpload.files[0];
-
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
+		const defImage = settings.defImg || "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true";
+		const defLnk = settings.defLink || "https://store.steampowered.com/wishlist/profiles/76561198878789498/";
+		
 		if (name === "") {
 			alert("Please enter a game name!");
 			return;
 		}
 		
 		if (link === "") {
-			link = "https://store.steampowered.com/wishlist/profiles/76561198878789498/";
+			link = defLnk;
 		}
 		
 		// Ensure gameId is unique and persistent
@@ -280,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			
 			reader.readAsDataURL(file);
 		} else { 
-			imgPath = "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true"; // defualt image
+			imgPath = defImage; // defualt image
 			addGameToList(gameId, imgPath, name, link, category);
 			saveGame(gameId, imgPath, name, link, category);
 		}
