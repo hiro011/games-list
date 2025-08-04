@@ -13,33 +13,11 @@
 			const goTopBtn = document.getElementById("go-top-btn");
 			const refreshBtn = document.getElementById("refresh-btn");
 			
-			// Init default setting value
-			defaultSet();
-			function defaultSet() {
-				const settings = JSON.parse(localStorage.getItem("settings")) || {};
-				const defaultSettings = {
-					navBg: "images/background-img2.png",
-					theme: "blue",
-					defImg: "images/default-game.jpeg",
-					defLink: "https://store.steampowered.com"
-				};
-				
-				// Fill in any missing or null values with defaults
-				for (const key in defaultSettings) {
-					if (settings[key] == null) {
-						settings[key] = defaultSettings[key];
-					}
-				}
-
-				// Save back the updated settings (if anything was missing)
-				localStorage.setItem("settings", JSON.stringify(settings));
-			}
-			
 			// Load nav images 
 			navImageInit();
 			function navImageInit() {
-				const settings = JSON.parse(localStorage.getItem("settings")) || {};
-				const bg = settings.navBg || "images/background-img1.png";
+				const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
+				const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/main/background-img4.png?raw=true";
 				headerBg.style.backgroundImage = `url("${bg}")`;
 			}
 			
@@ -62,7 +40,7 @@
 			// initialise the theme
 			themeInit();
 			function themeInit(){
-			  const settings = JSON.parse(localStorage.getItem("settings")) || {};
+			  const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 			  const themeValue = settings.theme || "blue";
 			  
 			  const body = document.getElementById('main-body');
@@ -105,7 +83,7 @@
 
 		.setting-group {
 		  margin-bottom: 32px;
-		  padding: 20px;
+		  padding: 0 10px 10px 10px;
 		  border-left: 6px solid #3498db;
 		  background: #f9f9f9;
 		  border-radius: 12px;
@@ -115,6 +93,11 @@
 		  margin-bottom: 12px;
 		  font-size: 24px;
 		  color: #2c3e50;
+		  background: #e8f6ff;
+		  border-radius: 10px;
+		  padding: 10px;
+		  border-top: 1px solid #aec5e8;
+		  border-bottom: 1px solid #aec5e8;
 		}
 
 		.setting-group p {
@@ -153,14 +136,19 @@
 
     <main>
         <div class="btn-container"> 
+			<a href="Games.html" class="home-btn" >
+				<button>
+					Home
+				</button>
+			</a>
 			<a href="Settings.html" class="settings-btn" >
 				<button>
 					Settings
 				</button>
 			</a> 
-			<a href="index.html" class="home-btn" >
-				<button>
-					Home
+			<a href="about.html">
+				<button class="active-btn" >
+					About
 				</button>
 			</a>
 		</div> 
@@ -233,7 +221,6 @@
 			</ul>
 		  </div>
 		</section>
-
 
 		<button id="refresh-btn" class="refresh-btn" >Refresh</button>
         <button id="go-top-btn" class="go-top-btn">↑ Go to Top</button>
