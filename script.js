@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const previewEditImage = document.getElementById('previewEditImage');
     const toggleEditForm = document.querySelectorAll(".edit-btn");
 
-	const downloadBtn = document.getElementById("download-html-btn");
     const goTopBtn = document.getElementById("go-top-btn");
 	const refreshBtn = document.getElementById("refresh-btn");
     const searchInput = document.getElementById("search-input");
@@ -27,10 +26,99 @@ document.addEventListener("DOMContentLoaded", function () {
 	const GameImgForm = document.getElementById('show-game');
 	const showGameImg = document.querySelectorAll('.show-image'); 
 
+	const exportGameForm = document.getElementById("export-game");
 	const deleteGameForm = document.getElementById("delete-game");
     const deleteButton = document.getElementById("delete-b"); 
-        const headerBg = document.querySelector("header");
+    const headerBg = document.querySelector("header");
 
+
+	// Create hidden file input for JSON import
+	const importInput = document.createElement('input');
+	importInput.type = 'file';
+	importInput.accept = '.json';
+	importInput.style.display = 'none';
+	document.body.appendChild(importInput);
+
+	// Import button event listener
+	document.getElementById('import-btn').addEventListener('click', () => {
+	  importInput.click();
+	});
+	
+	// Handle file selection
+	importInput.addEventListener('change', (event) => {
+	  const file = event.target.files[0];
+	  if (!file) return;
+
+	  const reader = new FileReader();
+	  reader.onload = (e) => {
+		try {
+		  const importedGames = JSON.parse(e.target.result);
+		  let games = JSON.parse(localStorage.getItem('games')) || [];
+
+		  // Merge imported games, avoiding duplicates by ID
+		  importedGames.forEach((importedGame) => {
+			const existingIndex = games.findIndex((game) => game.id === importedGame.id);
+			if (existingIndex > -1) {
+			  // Update existing game
+			  games[existingIndex] = importedGame;
+			} else {
+			  // Add new game
+			  games.push(importedGame);
+			}
+			// Add to UI
+			addGameToList(
+			  importedGame.id,
+			  importedGame.imgPath,
+			  importedGame.name,
+			  importedGame.link,
+			  importedGame.category
+			);
+		  });
+
+		  // Save merged games to localStorage
+		  localStorage.setItem('games', JSON.stringify(games));
+
+		  // Update game ID counter
+		  const maxId = Math.max(...games.map((game) => game.id), 5);
+		  localStorage.setItem('gameId', maxId + 1);
+
+		  // Update UI counts
+		  updateGameCounts();
+
+		  // Reset file input
+		  importInput.value = '';
+		} catch (error) {
+		  alert('Error importing JSON: Invalid file format');
+		  console.error(error);
+		}
+	  };
+	  reader.readAsText(file);
+	});
+	
+	// show export popup
+	document.getElementById('export-btn').addEventListener('click', () => {
+		exportGameForm.style.display = 'block';
+		overlay.style.display = 'block';
+		document.getElementById("export-b").focus();
+		document.body.classList.add('overlay-active'); 
+	});
+	//hide export popup
+	document.getElementById('cancel-e').addEventListener('click', () => {
+		hideForms();
+	});
+	
+	// export the data
+	document.getElementById('export-b').addEventListener('click', () => {
+	  const games = JSON.parse(localStorage.getItem('games')) || [];
+	  const jsonStr = JSON.stringify(games, null, 2);
+	  const blob = new Blob([jsonStr], { type: 'application/json' });
+	  const url = URL.createObjectURL(blob);
+	  const a = document.createElement('a');
+	  a.href = url;
+	  a.download = 'games-list.json';
+	  a.click();
+	  URL.revokeObjectURL(url);
+	});
 
     // Track currently editing game
 	let currentEditingGame = null;
@@ -41,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
  // Load images
         navImageInit();
         function navImageInit() {
-                const settings = JSON.parse(localStorage.getItem("settings")) || {};
+                const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
                 const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true";
                 headerBg.style.backgroundImage = `url("${bg}")`;
         }
@@ -49,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // initialise the theme
         themeInit();
         function themeInit(){
-          const settings = JSON.parse(localStorage.getItem("settings")) || {};
+          const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
           const themeValue = settings.theme || "blue";
           
           const body = document.getElementById('main-body');
@@ -114,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	function hideForms() {
         addGameForm.style.display = 'none';
         editGameForm.style.display = 'none';
+		exportGameForm.style.display = 'none';
 		deleteGameForm.style.display = 'none';
 		GameImgForm.style.display = 'none';
         overlay.style.display = 'none';
@@ -208,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
        window.addEventListener("scroll", function () {
                 const navBar = document.getElementById("nav-bar");
-                const settings = JSON.parse(localStorage.getItem("settings")) || {};
+                const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
                 const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true"; 
         if (window.scrollY > 250) {
             goTopBtn.style.display = "block";
@@ -258,7 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const file = imageUpload.files[0];
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 		const defImage = settings.defImg || "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true";
-		const defLnk = settings.defLink || "https://store.steampowered.com/wishlist/profiles/76561198878789498/";
+		const defLnk = settings.defLink || "https://store.steampowered.com";
 		
 		if (name === "") {
 			alert("Please enter a game name!");
@@ -473,7 +562,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		// Default link if empty
          if (newLink === "") {
-             newLink = "https://store.steampowered.com/wishlist/profiles/76561198878789498/";
+             newLink = "https://store.steampowered.com";
          }
 		 
 		// Determine the image path
@@ -570,158 +659,4 @@ document.addEventListener("DOMContentLoaded", function () {
         updateGameCounts(); // Call updateGameCounts here
 	}
 
-    // Download Updated HTML File
-    downloadBtn.addEventListener("click", function () {
-        let games = JSON.parse(localStorage.getItem("games")) || [];
-
-        // Generate updated HTML content
-        let htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Games</title>
-    <link rel="stylesheet" href="styles.css">
-	<link rel="icon" type="image" href="images/game_stick_icon 2.png">
-</head>
-
-<body>
-    <header>
-        <h1>My Games - <span class="game-count" id="total-count">0</span></h1>
-		<div class="search-container">
-            <input type="text" id="search-input" placeholder="🔍 Search games...">
-            <button id="clear-search" >clear</button>
-        </div>
-        <nav id="nav-bar">
-            <ul>
-                <li><a href="#playing">Playing</a></li>
-                <li><a href="#plan-to">Plan To</a></li>
-                <li><a href="#on-hold">On Hold</a></li>
-                <li><a href="#maybe">Maybe</a></li>
-                <li><a href="#completed">Completed</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-		<!-- Overlay (background) -->
-		<div class="overlay" id="overlay"></div>
-		
-        <section id="show-game">
-			<span class="close-btn">&times;</span>
-			<div class="preview-image">
-				<img id="previewGameImage" src="https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true" alt="Show image">
-			</div>
-			<h2>Game Name</h2>
-		</section>
-
-		<section id="playing" class="game-container">
-			<div class="game-section">
-				<h2>Playing - <span class="game-count" id="playing-count">0</span></h2>
-				<ul class="game-list" id="playing-list">
-					${games.filter(g => g.category === "playing").map(g => `
-					<li data-game-name="${g.name}">
-						<div class="game-image">
-							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						</div>
-						<div class="game-names">
-							<a href="${g.link}" target="_blank">${g.name}</a>
-						</div>
-					</li>
-					`).join("")}
-				</ul>
-            </div>
-        </section>
-
-        <section id="plan-to" class="game-container">
-			<div class="game-section">
-				<h2>Plan To - <span class="game-count" id="plan-to-count">0</span></h2>
-				<ul class="game-list" id="plan-to-list">
-					${games.filter(g => g.category === "plan-to").map(g => `
-					<li data-game-name="${g.name}">
-						<div class="game-image">
-							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						</div>
-						<div class="game-names">
-							<a href="${g.link}" target="_blank">${g.name}</a>
-						</div>
-					</li>
-					`).join("")}
-				</ul>
-			</div>
-        </section>
-		
-        <section id="on-hold" class="game-container">
-			<div class="game-section">
-				<h2>On Hold - <span class="game-count" id="on-hold-count">0</span></h2>
-				<ul class="game-list" id="on-hold-list">
-					${games.filter(g => g.category === "on-hold").map(g => `
-					<li data-game-name="${g.name}">
-						<div class="game-image">
-							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						</div>
-						<div class="game-names">
-							<a href="${g.link}" target="_blank">${g.name}</a>
-						</div>
-					</li>
-					`).join("")}
-				</ul>
-			</div>
-        </section>
-		
-        <section id="maybe" class="game-container">
-			<div class="game-section">
-				<h2>Maybe - <span class="game-count" id="maybe-count">0</span></h2>
-				<ul class="game-list" id="maybe-list">
-					${games.filter(g => g.category === "maybe").map(g => `
-					<li data-game-name="${g.name}">
-						<div class="game-image">
-							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						</div>
-						<div class="game-names">
-							<a href="${g.link}" target="_blank">${g.name}</a>
-						</div>
-					</li>
-					`).join("")}
-				</ul>
-			</div>
-        </section>
-
-        <section id="completed" class="game-container">
-			<div class="game-section">
-				<h2>Completed - <span class="game-count" id="completed-count">0</span></h2>
-				<ul class="game-list" id="completed-list">
-					${games.filter(g => g.category === "completed").map(g => `
-					<li data-game-name="${g.name}">
-						<div class="game-image">
-							<img class="show-image" src="${g.imgPath}" alt="${g.name}">
-						</div>
-						<div class="game-names">
-							<a href="${g.link}" target="_blank">${g.name}</a>
-						</div>
-					</li>
-					`).join("")}
-				</ul>
-			</div>
-        </section>
-		
-		<button id="refresh-btn" class="refresh-btn" >Refresh</button>	
-        <button id="go-top-btn" class="go-top-btn">↑ Go to Top</button>
-    </main>
-
-    <script src="script2.js"></script>
-</body>
-</html>
-	`;
-
-        // Create a Blob and trigger download
-        const blob = new Blob([htmlContent], { type: "text/html" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "Games-data.html";
-        document.body.prepend(a);
-        a.click();
-        document.body.removeChild(a);
-    });
 });
