@@ -159,6 +159,29 @@ button:hover {
 	border: 1px solid #148516;
 }
 
+.btn-container {
+    text-align: center;
+    padding: 10px 0; 
+	background-color: #8ab3d4;
+ }
+ 
+.btn-container a {
+	text-decoration: none;
+}
+
+.btn-container button {
+	background: none;
+}
+
+.btn-container button:hover {
+    background: var(--clr-btn);
+	border: none;
+}
+
+.btn-container .active-btn{
+    background: var(--clr-btn);
+}
+
 /* ** START: Search Input Styling ** */
 .search-container {
     text-align: center; 
@@ -333,13 +356,14 @@ button:hover {
 }
 
 /* Add Game Button */
-.add-game-container, .btn-container {
+.add-game-container {
     text-align: center;
     margin: 20px 20px 0 20px; /* Top Right Bottom Left */
 }
 
-.btn-container a {
-        text-decoration: none;
+.add-game-container Button {
+    font-weight: bold;
+    padding: 10px 20px;
 }
 
 #toggle-form-btn {
@@ -348,7 +372,7 @@ button:hover {
 }
 
 /* pop-up form container */
-#add-game, #edit-game, #delete-game {
+#add-game, #edit-game, #delete-game, #export-game {
   display: none;
   position: fixed;
   top: 50%;
@@ -458,6 +482,7 @@ button:hover {
 input[type="file"] {
     margin: 10px 0;
 	max-width: 300px;
+	cursor: pointer;
 }
 
 .preview {
@@ -492,16 +517,4 @@ input[type="file"] {
 #refresh-btn {
     right: 30px;
 	z-index: 1100; /* Ensure it's above the overlay */
-}
-
-/* Button Styles */
-.download-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#download-html-btn {
-    font-weight: bold;
-    padding: 10px 20px;
-	margin-bottom: 50px;
 }
