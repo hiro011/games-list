@@ -123,10 +123,25 @@ button:hover {
 /* Home Button */
 .btn-container {
     text-align: center;
-    margin: 20px 20px 0 20px; /* Top Right Bottom Left */
+    padding: 10px 0; 
+	background-color: #8ab3d4;
 }
+
 .btn-container a {
-        text-decoration: none;
+    text-decoration: none;
+}
+
+.btn-container button {
+	background: none;
+}
+
+.btn-container button:hover {
+    background: var(--clr-btn);
+	border: none;
+}
+
+.btn-container .active-btn{
+    background: var(--clr-btn);
 }
 
 input[type="file"] {
@@ -257,4 +272,3 @@ input[type="text"]:focus {
   font-size: 16px;
   transition: background 0.3s;
 }
-
