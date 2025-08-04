@@ -23,14 +23,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Load images 
 	navImageInit();
 	function navImageInit() {
-		const settings = JSON.parse(localStorage.getItem("settings")) || {};
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 		const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true";
 		headerBg.style.backgroundImage = `url("${bg}")`;
 	}
 	
 	defImageInit();
 	function defImageInit() {
-		const settings = JSON.parse(localStorage.getItem("settings")) || {};
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 		const defImage = settings.defImg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg?raw=true";
 		const previewDefImg = document.getElementById('previewDefImage');
 		
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// initialise the theme
 	themeInit();
 	function themeInit(){
-	  const settings = JSON.parse(localStorage.getItem("settings")) || {};
+	  const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 	  const themeValue = settings.theme || "blue";
 	  
 	  const body = document.getElementById('main-body');
@@ -65,10 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 	// Set theme
 	function setTheme(themeIn) {
-		const settings = JSON.parse(localStorage.getItem("settings")) || {};
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 	 
 		settings.theme = themeIn;
-		localStorage.setItem("settings", JSON.stringify(settings));
+		localStorage.setItem("settings_game", JSON.stringify(settings));
 		
 		// Update the theme
 		themeInit();
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Init default setting value
 	defaultSet();
 	function defaultSet() {
-		const settings = JSON.parse(localStorage.getItem("settings")) || {};
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 		const defaultSettings = {
 			navBg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true",
 			theme: "blue",
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		// Save back the updated settings (if anything was missing)
-		localStorage.setItem("settings", JSON.stringify(settings));
+		localStorage.setItem("settings_game", JSON.stringify(settings));
 	}
 	
 	refreshBtn.addEventListener("click", function () {
@@ -145,13 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		
 		// Get existing settings or create a new one
-		const settings = JSON.parse(localStorage.getItem("settings")) || {};
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 
 		// Update defLink
 		settings.defLink = DefLink;
 
 		// Save updated settings back to localStorage
-		localStorage.setItem("settings", JSON.stringify(settings));
+		localStorage.setItem("settings_game", JSON.stringify(settings));
 		alert(`Defualt link updated! ${DefLink}`);
 
 		// Reset form fields
@@ -171,9 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		const reader = new FileReader();
 		reader.onload = function(e) {
 			const imagePath = e.target.result;
-			const settings = JSON.parse(localStorage.getItem("settings")) || {};
+			const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 			settings.defImg = imagePath;
-			localStorage.setItem("settings", JSON.stringify(settings));
+			localStorage.setItem("settings_game", JSON.stringify(settings));
 			alert("Default image updated!");
 		};
 		reader.readAsDataURL(file);
@@ -181,10 +181,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Navigation background event listener
 	function updateNavBg(imagePath) {
-		const settings = JSON.parse(localStorage.getItem("settings")) || {};
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
 
 		settings.navBg = imagePath;
-		localStorage.setItem("settings", JSON.stringify(settings));
+		localStorage.setItem("settings_game", JSON.stringify(settings));
 		
 		// Update the background
 		navImageInit();
