@@ -11,6 +11,7 @@ This is a simple web application built with HTML, CSS, and JavaScript that allow
 - **Search:** Find games quickly with a real-time updating search bar.
 - **Game Details:** Each game shows its name, an optional image, and a link to its website or store.
 - **Local Storage:** All game data is saved to your browser's local storage.
+- **Import & Export:** Import a JSON file to load your game list, or export your current list as a downloadable JSON file for backup or sharing.
 
 ## New Pages
 
@@ -37,8 +38,8 @@ Get information about the purpose of the application, its features, and how to u
 ## Technologies Used
 
 - **HTML:** Structuring the web page.
-- **CSS:** Styling and theming.
-- **JavaScript:** Interactive functionality, local storage management, drag-and-drop, and dynamic UI updates.
+- **CSS:** Styling and theming. 
+- **JavaScript:** Interactive functionality, local storage management, drag-and-drop, dynamic UI updates, and import/export features.
 
 ## Local Storage
 
