@@ -1,6 +1,6 @@
 # Games-List
 
-This is a simple web application built with HTML, CSS, and JavaScript that allows users to manage a personal list of their favorite games directly within their browser. You can easily add new games, edit their details, rearrange their order, and remove them from the list. All data is stored locally in your browser's storage, ensuring your list is persistent across sessions on the same device.
+This is a simple web application built with HTML, CSS, and JavaScript that allows users to manage a personal list of their favorite games directly within their browser. You can easily add new games, import and export the list, edit their details, rearrange their order, and remove them from the list. All data is stored locally in your browser's storage, ensuring your list is persistent across sessions on the same device.
 
 ## Features
 
