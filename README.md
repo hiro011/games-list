@@ -32,8 +32,9 @@ Get information about the purpose of the application, its features, and how to u
 
 1. **Visit the website:** [https://game-list-local.netlify.app](https://game-list-local.netlify.app)
 2. **Manage your game list:** Add, edit, move, and delete games with the interface.
-3. **Customize settings:** Navigate to the Settings page to personalize your experience.
-4. **Learn more:** Visit the About page for app information and usage guidance.
+3. **Import & Export:** Use the import option to load a JSON file containing your game list, or export your current list as a JSON file for backup or sharing.  
+4. **Customize settings:** Navigate to the Settings page to personalize your experience.
+5. **Learn more:** Visit the About page for app information and usage guidance.
 
 ## Technologies Used
 
