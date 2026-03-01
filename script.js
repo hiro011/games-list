@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	navImageInit();
 	function navImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const bg = settings.navBg || "images/background-img2.png";
+		const bg = settings.navBg || "background-img2.png";
 		headerBg.style.backgroundImage = `url("${bg}")`;
 	}
 	
@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const navBar = document.getElementById("nav-bar");
 		
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const bg = settings.navBg || "images/background-img2.png";
+		const bg = settings.navBg || "background-img2.png";
 		
         if (window.scrollY > 250) {
             goTopBtn.style.display = "block";
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const reader = new FileReader();
 		const file = imageUpload.files[0];
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const defImage = settings.defImg || "images/default-game.jpeg";
+		const defImage = settings.defImg || "default-game.jpeg";
 		const defLnk = settings.defLink || "https://nexusgames.to/";
 		
 		if (name === "") {
@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			
 			// reader.readAsDataURL(file);
 		// } else {
-			// // imgPath = "images/default-game.jpeg"; // defualt image
+			// // imgPath = "default-game.jpeg"; // defualt image
 			// imgPath = "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true"; // defualt image
 			// addGameToList(gameId, imgPath, name, link, category);
 			// saveGame(gameId, imgPath, name, link, category);
@@ -670,7 +670,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		games.forEach(game => {
             // Ensure valid data before adding
             if (game && game.id != null && game.name && game.category) {
-                 addGameToList(game.id, "images/default-game.jpeg", game.name, game.link || "https://nexusgames.to", game.category);
+                //  addGameToList(game.id, game.imgPath || "default-game.jpeg", game.name, game.link || "https://nexusgames.to", game.category);
+                 addGameToList(game.id, "default-game.jpeg", game.name, game.link || "https://nexusgames.to", game.category);
             } else {
                 console.warn("Skipping invalid game data from localStorage:", game);
             }

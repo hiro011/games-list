@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	navImageInit();
 	function navImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const bg = settings.navBg || "images/background-img2.png";
+		const bg = settings.navBg || "background-img2.png";
 		headerBg.style.backgroundImage = `url("${bg}")`;
 	}
 	
 	defImageInit();
 	function defImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const defImage = settings.defImg || "images/default-game.jpeg";
+		const defImage = settings.defImg || "default-game.jpeg";
 		const previewDefImg = document.getElementById('previewDefImage');
 		
 		previewDefImg.src = defImage;
@@ -167,10 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		navImageInit();
 	}
 
-	navBg1.addEventListener("click", () => updateNavBg("images/background-img1.png"));
-	navBg2.addEventListener("click", () => updateNavBg("images/background-img2.png"));
-	navBg3.addEventListener("click", () => updateNavBg("images/background-img3.png"));
-	navBg4.addEventListener("click", () => updateNavBg("images/background-img4.png"));
+	navBg1.addEventListener("click", () => updateNavBg("background-img1.png"));
+	navBg2.addEventListener("click", () => updateNavBg("background-img2.png"));
+	navBg3.addEventListener("click", () => updateNavBg("background-img3.png"));
+	navBg4.addEventListener("click", () => updateNavBg("background-img4.png"));
 	
 	const imgUploadNav = document.getElementById('imageUploadNav');
 	

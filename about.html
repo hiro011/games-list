@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Games</title>
     <link rel="stylesheet" href="styles_settings.css">
-	<link rel="icon" type="image" href="images/game_stick_icon 2.png">
+	<link rel="icon" type="image" href="game_stick_icon 2.png">
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
@@ -17,7 +17,7 @@
 			navImageInit();
 			function navImageInit() {
 				const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-				const bg = settings.navBg || "images/background-img1.png";
+				const bg = settings.navBg || "background-img1.png";
 				headerBg.style.backgroundImage = `url("${bg}")`;
 			}
 			
