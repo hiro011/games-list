@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	const exportGameForm = document.getElementById("export-game");
 	const deleteGameForm = document.getElementById("delete-game");
     const deleteButton = document.getElementById("delete-b"); 
-    const headerBg = document.querySelector("header");
 
+	const headerBg = document.querySelector("header");
 
 	// Create hidden file input for JSON import
 	const importInput = document.createElement('input');
@@ -118,51 +118,58 @@ document.addEventListener("DOMContentLoaded", function () {
 	  a.download = 'games-list.json';
 	  a.click();
 	  URL.revokeObjectURL(url);
+	  hideForms();
 	});
 
     // Track currently editing game
 	let currentEditingGame = null;
+	
+	function getRelativePath(fullPath) {
+		const index = fullPath.indexOf('images/');
+		return index !== -1 ? fullPath.substring(index) : fullPath;
+	}
 
     // Load saved games/ Initialize
     loadGames();
 	updateGameCounts(); // Call this after loading games
- // Load images
-        navImageInit();
-        function navImageInit() {
-                const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-                const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true";
-                headerBg.style.backgroundImage = `url("${bg}")`;
-        }
-        
-        // initialise the theme
-        themeInit();
-        function themeInit(){
-          const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-          const themeValue = settings.theme || "blue";
-          
-          const body = document.getElementById('main-body');
-          
-          // Remove any existing theme classes
-          body.classList.remove('theme-green', 'theme-dark', 'theme-orange', 'theme-purple');
-          
-          if (themeValue === 'blue' || themeValue == '') {
-                body.classList.remove('theme-green', 'theme-dark', 'theme-orange', 'theme-purple');
-          }
-          
-          // Add the selected theme
-          if (themeValue === 'green') {
-                body.classList.add('theme-green');
-          } else if (themeValue === 'dark') {
-                body.classList.add('theme-dark');
-          } else if (themeValue === 'orange') {
-                body.classList.add('theme-orange');
-          }else if (themeValue === 'purple') {
-                body.classList.add('theme-purple');
-          }else if (themeValue === 'red') {
-                body.classList.add('theme-red');
-          }
-        }
-        
+
+	// Load images 
+	navImageInit();
+	function navImageInit() {
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
+		const bg = settings.navBg || "images/background-img2.png";
+		headerBg.style.backgroundImage = `url("${bg}")`;
+	}
+	
+	// initialise the theme
+	themeInit();
+	function themeInit(){
+	  const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
+	  const themeValue = settings.theme || "blue";
+	  
+	  const body = document.getElementById('main-body');
+	  
+	  // Remove any existing theme classes
+	  body.classList.remove('theme-green', 'theme-dark', 'theme-orange', 'theme-purple');
+	  
+	  if (themeValue === 'blue' || themeValue == '') {
+		body.classList.remove('theme-green', 'theme-dark', 'theme-orange', 'theme-purple');
+	  }
+	  
+	  // Add the selected theme
+	  if (themeValue === 'green') {
+		body.classList.add('theme-green');
+	  } else if (themeValue === 'dark') {
+		body.classList.add('theme-dark');
+	  } else if (themeValue === 'orange') {
+		body.classList.add('theme-orange');
+	  }else if (themeValue === 'purple') {
+		body.classList.add('theme-purple');
+	  }else if (themeValue === 'red') {
+		body.classList.add('theme-red');
+	  }
+	}
+	
 	// Show delete popup form 
 	function showDeletePopup() {
 		deleteGameForm.style.display = 'block';
@@ -295,23 +302,25 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-       window.addEventListener("scroll", function () {
-                const navBar = document.getElementById("nav-bar");
-                const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-                const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true"; 
+    window.addEventListener("scroll", function () {
+		// const navBar = document.getElementById("top-nav");
+		const navBar = document.getElementById("nav-bar");
+		
+		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
+		const bg = settings.navBg || "images/background-img2.png";
+		
         if (window.scrollY > 250) {
             goTopBtn.style.display = "block";
         } else {
             goTopBtn.style.display = "none";
-        }
-                if (window.scrollY > 130) {
-                        navBar.style.position = "fixed";
-                        navBar.style.backgroundImage = `url("${bg}")`;
+        } 
+		if (window.scrollY > 100) {
+			navBar.style.position = "fixed";
+			navBar.style.backgroundImage = `url("${bg}")`;
         } else {
-                        navBar.style.position = "static";
-                        navBar.style.backgroundImage = "none";
+			navBar.style.position = "static";
+			navBar.style.backgroundImage = "none";
         }
-    
     });
  
 	// Function to handle Enter key submission
@@ -346,8 +355,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		const reader = new FileReader();
 		const file = imageUpload.files[0];
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const defImage = settings.defImg || "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true";
-		const defLnk = settings.defLink || "https://store.steampowered.com";
+		const defImage = settings.defImg || "images/default-game.jpeg";
+		const defLnk = settings.defLink || "https://nexusgames.to/";
 		
 		if (name === "") {
 			alert("Please enter a game name!");
@@ -360,28 +369,30 @@ document.addEventListener("DOMContentLoaded", function () {
 		
 		// Ensure gameId is unique and persistent
 		let gameId = localStorage.getItem("gameId") ? Number(localStorage.getItem("gameId")) : 5;
-		let imgPath = "";
+		// let imgPath = "";
 		
-		// Handle image upload
-		if (file) {
-			reader.onload = function (event) {
-				imgPath = event.target.result;
-			addGameToList(gameId, imgPath, name, link, category);
-			saveGame(gameId, imgPath, name, link, category);
-			};
+		// // Handle image upload
+		// if (file) {
+			// reader.onload = function (event) {
+				// imgPath = event.target.result;
+			// addGameToList(gameId, imgPath, name, link, category);
+			// saveGame(gameId, imgPath, name, link, category);
+			// };
 			
-			reader.readAsDataURL(file);
-		} else { 
-			imgPath = defImage; // defualt image
-			addGameToList(gameId, imgPath, name, link, category);
-			saveGame(gameId, imgPath, name, link, category);
-		}
-		// Instead of storing Base64, save the file path or filename
-		// let imgPath = file ? `images/${file.name}` : "images/default-game.jpeg";
+			// reader.readAsDataURL(file);
+		// } else {
+			// // imgPath = "images/default-game.jpeg"; // defualt image
+			// imgPath = "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true"; // defualt image
+			// addGameToList(gameId, imgPath, name, link, category);
+			// saveGame(gameId, imgPath, name, link, category);
+		// }
 		
-		// addGameToList(gameId, imgPath, name, link, category);
-		// saveGame(gameId, imgPath, name, link, category);
-
+		// Instead of storing Base64, save the file path or filename
+		let imgPath = file ? `images/${file.name}` : defImage;
+		
+		addGameToList(gameId, imgPath, name, link, category);
+		saveGame(gameId, imgPath, name, link, category);
+		
 		// Increment and store new gameId
 		gameId++;
 		localStorage.setItem("gameId", gameId);
@@ -421,6 +432,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					<option value="on-hold">On Hold</option>
 					<option value="maybe">Maybe</option>
 					<option value="completed">Completed</option>
+					<option value="droped">Droped</option>
 				</select>
 				<button class="edit-btn">✏️</button>
 				<button class="delete-btn">🗑</button>
@@ -531,6 +543,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const onHoldCountSpan = document.getElementById('on-hold-count');
         const maybeCountSpan = document.getElementById('maybe-count');
         const completedCountSpan = document.getElementById('completed-count');
+        const dropedCountSpan = document.getElementById('droped-count');
         const totalCountSpan = document.getElementById('total-count');
 
         const playingCount = document.getElementById('playing-list').children.length;
@@ -538,13 +551,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const onHoldCount = document.getElementById('on-hold-list').children.length;
         const maybeCount = document.getElementById('maybe-list').children.length;
         const completedCount = document.getElementById('completed-list').children.length;
-        const totalCount = playingCount + planToCount + onHoldCount + completedCount + maybeCount;
+        const dropedCount = document.getElementById('droped-list').children.length;
+        const totalCount = playingCount + planToCount + onHoldCount + completedCount + maybeCount + dropedCount;
 
         playingCountSpan.textContent = playingCount;
         planToCountSpan.textContent = planToCount;
         onHoldCountSpan.textContent = onHoldCount;
         maybeCountSpan.textContent = maybeCount;
         completedCountSpan.textContent = completedCount;
+        dropedCountSpan.textContent = dropedCount;
         totalCountSpan.textContent = totalCount;
     }
 	
@@ -562,7 +577,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		// Default link if empty
          if (newLink === "") {
-             newLink = "https://store.steampowered.com";
+             newLink = "https://nexusgames.to";
          }
 		 
 		// Determine the image path
@@ -570,6 +585,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (file) {
             newImgPath = `images/${file.name}`;
         }
+		// Ensure relative path
+		newImgPath = getRelativePath(newImgPath);
 
         updateGame(currentEditingGame, newImgPath, newName, newLink);
 	});
@@ -588,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Update the image source and alt text
             if (imgElement) {
-                imgElement.src = newImg;
+                imgElement.src = getRelativePath(newImg);;
                 imgElement.alt = newName; // Update alt text for accessibility
             }
 
@@ -642,16 +659,18 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 	function loadGames() {
 		let games = JSON.parse(localStorage.getItem("games")) || [];
+		
 		document.getElementById('playing-list').innerHTML = '';
         document.getElementById('plan-to-list').innerHTML = '';
         document.getElementById('on-hold-list').innerHTML = '';
         document.getElementById('maybe-list').innerHTML = '';
         document.getElementById('completed-list').innerHTML = '';
+        document.getElementById('droped-list').innerHTML = '';
 
 		games.forEach(game => {
             // Ensure valid data before adding
             if (game && game.id != null && game.name && game.category) {
-                 addGameToList(game.id, game.imgPath || "https://github.com/hiro011/my-games/blob/main/default-game.jpeg?raw=true", game.name, game.link || "#", game.category);
+                 addGameToList(game.id, "images/default-game.jpeg", game.name, game.link || "https://nexusgames.to", game.category);
             } else {
                 console.warn("Skipping invalid game data from localStorage:", game);
             }

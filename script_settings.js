@@ -20,18 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const goTopBtn = document.getElementById("go-top-btn");
 	const refreshBtn = document.getElementById("refresh-btn");
 	
-	// Load images 
+	// Load nav images 
 	navImageInit();
 	function navImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true";
+		const bg = settings.navBg || "images/background-img2.png";
 		headerBg.style.backgroundImage = `url("${bg}")`;
 	}
 	
 	defImageInit();
 	function defImageInit() {
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const defImage = settings.defImg || "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg?raw=true";
+		const defImage = settings.defImg || "images/default-game.jpeg";
 		const previewDefImg = document.getElementById('previewDefImage');
 		
 		previewDefImg.src = defImage;
@@ -81,29 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	themeGreen.addEventListener("click", () => setTheme("green"));
 	themePurple.addEventListener("click", () => setTheme("purple"));
 	themeRed.addEventListener("click", () => setTheme("red"));
-	
-	
-	// Init default setting value
-	defaultSet();
-	function defaultSet() {
-		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-		const defaultSettings = {
-			navBg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true",
-			theme: "blue",
-			defImg: "https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/default-game.jpeg?raw=true",
-			defLink: "https://store.steampowered.com"
-		};
-		
-		// Fill in any missing or null values with defaults
-		for (const key in defaultSettings) {
-			if (settings[key] == null) {
-				settings[key] = defaultSettings[key];
-			}
-		}
-
-		// Save back the updated settings (if anything was missing)
-		localStorage.setItem("settings_game", JSON.stringify(settings));
-	}
 	
 	refreshBtn.addEventListener("click", function () {
 		// Refresh the page
@@ -178,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		};
 		reader.readAsDataURL(file);
 	});
-
+	
 	// Navigation background event listener
 	function updateNavBg(imagePath) {
 		const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
@@ -190,10 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		navImageInit();
 	}
 
-	navBg1.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img1.png?raw=true"));
-	navBg2.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true"));
-	navBg3.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img3.png?raw=true"));
-	navBg4.addEventListener("click", () => updateNavBg("https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img4.png?raw=true"));
+	navBg1.addEventListener("click", () => updateNavBg("images/background-img1.png"));
+	navBg2.addEventListener("click", () => updateNavBg("images/background-img2.png"));
+	navBg3.addEventListener("click", () => updateNavBg("images/background-img3.png"));
+	navBg4.addEventListener("click", () => updateNavBg("images/background-img4.png"));
 	
 	const imgUploadNav = document.getElementById('imageUploadNav');
 	

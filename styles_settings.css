@@ -4,9 +4,8 @@
 	--clr-footer: linear-gradient(135deg, #0d47a1, #1565c0); /* header, footer */
 	--clr-background: #abd0eb; /* body */
 	--clr-container : #cbe2f2; /* game list container */
-	/* --clr-list: #aad1f2;   /* games card /list li */ 
 	--clr-btn: #1ba0df; 
-	/* --clr-list-hover: #90caf9;   /* list li hover */ 
+	--clr-btn-cont: #8ab3d4;   /* nav btn container */
 	--clr-btn-hover: #4ddfb8; 
 }
 
@@ -15,6 +14,7 @@
 	--clr-background: #dcedc8; /* pale green */
 	--clr-container : #e6f4ea; /* light mint */
 	--clr-btn: #73c178;
+	--clr-btn-cont: #9be8b0;   /* nav btn container */
 	--clr-btn-hover: #4ddfb8;
 }
 
@@ -23,6 +23,7 @@
 	--clr-background: #ffe0b2; /* light apricot */
 	--clr-container : #ffecb3; /* pale amber */
 	--clr-btn: #ffad3b;
+	--clr-btn-cont: #f0da78;   /* nav btn container */
 	--clr-btn-hover: #ff7a54;
 }
 
@@ -31,6 +32,7 @@
 	--clr-background: #121212; /* near-black */
 	--clr-container : #1e1e1e; /* slightly lighter for containers */
 	--clr-btn: #4f5abc;
+	--clr-btn-cont: #3a4047;   /* nav btn container */
 	--clr-btn-hover: #13b9d0;
 }
 
@@ -39,15 +41,17 @@
 	--clr-background: #e1bee7; /* soft lavender */
 	--clr-container : #f3e5f5; /* light violet for containers */
 	--clr-btn: #b357c2;
+	--clr-btn-cont: #c48de0;   /* nav btn container */
 	--clr-btn-hover: #f27ca2;
 }
 
 .theme-red {
-  --clr-footer: linear-gradient(135deg, #c62828, #e53935); /* deep red to vibrant red */
-  --clr-background: #f8d7da; /* soft rose background */
-  --clr-container: #fdecea; /* very light pink */
-  --clr-btn: #ec6261;
-  --clr-btn-hover: #ff9a88;
+	--clr-footer: linear-gradient(135deg, #c62828, #e53935); /* deep red to vibrant red */
+	--clr-background: #f8d7da; /* soft rose background */
+	--clr-container: #fdecea; /* very light pink */
+	--clr-btn: #ec6261;
+	--clr-btn-cont: #e08d99;   /* nav btn container */
+	--clr-btn-hover: #ff9a88;
 }
 
 .t-blue {
@@ -87,7 +91,7 @@ html {
 /* Header */
 header {
 	position: relative;
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true');
+	background-image: url('images/background-img2.png');
     background-size: cover;        /* Ensures the image covers the full nav */
     background-repeat: no-repeat;  /* Prevents tiling */
     background-position: center;   /* Centers the image */
@@ -117,18 +121,18 @@ button {
 
 button:hover {
     background-color: var(--clr-btn-hover);
-	border: 1px solid #148516;
+	/* border: 1px solid #148516; */
 }
 
 /* Home Button */
 .btn-container {
     text-align: center;
     padding: 10px 0; 
-	background-color: #8ab3d4;
+	background-color: var(--clr-btn-cont);
 }
 
 .btn-container a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .btn-container button {
@@ -237,25 +241,25 @@ input[type="text"]:focus {
   margin: 0;
 }
 .nav-bg-1 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img1.png?raw=true');
+	background-image: url('images/background-img1.png');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .nav-bg-2 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img2.png?raw=true');
+	background-image: url('images/background-img2.png');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .nav-bg-3 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img3.png?raw=true');
+	background-image: url('images/background-img3.png');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .nav-bg-4 {
-	background-image: url('https://github.com/hiro011/games-list/blob/1e9e4ab968e5cfc253b44d957aa79da242815288/background-img4.png?raw=true');
+	background-image: url('images/background-img4.png');
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -272,3 +276,4 @@ input[type="text"]:focus {
   font-size: 16px;
   transition: background 0.3s;
 }
+

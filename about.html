@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Games</title>
     <link rel="stylesheet" href="styles_settings.css">
-	<link rel="icon" type="image" href="https://github.com/hiro011/my-games/blob/main/game_stick_icon%202.png?raw=true">
+	<link rel="icon" type="image" href="images/game_stick_icon 2.png">
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
@@ -17,7 +17,7 @@
 			navImageInit();
 			function navImageInit() {
 				const settings = JSON.parse(localStorage.getItem("settings_game")) || {};
-				const bg = settings.navBg || "https://github.com/hiro011/games-list/blob/main/background-img4.png?raw=true";
+				const bg = settings.navBg || "images/background-img1.png";
 				headerBg.style.backgroundImage = `url("${bg}")`;
 			}
 			
@@ -185,29 +185,29 @@
 			  <li>Choose from multiple color themes</li>
 			</ul>
 		  </div>
-			
- 		<div class="setting-group">
-		  <h2>My Other Works</h2>
-		  <p>I have other platforms/websites I built that you can check out:</p>
-		  <ul>
-			<li>
-			  <strong>Movies List:</strong>
-			  A site to manage your favorite movies, similar to the Games List.
-			  <br>
-			  <a href="https://movie-list-local.netlify.app/" target="_blank">
-				Visit Movies List →
-			  </a>
-			</li>
-			<li>
-			  <strong>To-Do List:</strong>
-			  A task and project tracker to organize your daily activities.
-			  <br>
-			  <a href="https://todo-list-ahmed.netlify.app/" target="_blank">
-				Visit To-Do List →
-			  </a>
-			</li>
-		  </ul>
-		</div>
+
+			<div class="setting-group">
+			  <h2>My Other Works</h2>
+			  <p>I have other platforms/websites I built that you can check out:</p>
+			  <ul>
+				<li>
+				  <strong>Movies List:</strong>
+				  A site to manage your favorite movies, similar to the Games List.
+				  <br>
+				  <a href="https://movie-list-local.netlify.app/" target="_blank">
+					Visit Movies List →
+				  </a>
+				</li>
+				<li>
+				  <strong>To-Do List:</strong>
+				  A task and project tracker to organize your daily activities.
+				  <br>
+				  <a href="https://todo-list-ahmed.netlify.app/" target="_blank">
+					Visit To-Do List →
+				  </a>
+				</li>
+			  </ul>
+			</div>
 
 		  <div class="setting-group">
 			<h2>Contact</h2>
@@ -233,4 +233,3 @@
     <!-- <script src="script_about.js"></script> -->
 </body>
 </html>
-
